@@ -25,8 +25,12 @@ In practice, the choice of distro doesn't matter, but the code allows you to add
 There are multiple ways for obtaining sysroots:
 
 1. Build the target of choice and put it into a cloud storage bucket
-
-
+	The following targets can be built:
+	- `@sysroots//:sysroot_bookworm_libcxx_amd64`
+	- `@sysroots//:sysroot_bookworm_libstdcxx_amd64`
+	- `@sysroots//:sysroot_bookworm_libcxx_arm64`
+	- `@sysroots//:sysroot_bookworm_libstdcxx_arm64`
+	
 	```
 	$ bazel build @sysroots//:sysroot_bookworm_libcxx_amd64
 	  bazel-bin/sysroot_bookworm_libcxx_amd64.tar.zst
@@ -36,6 +40,7 @@ There are multiple ways for obtaining sysroots:
 
 	```
 	$ crane export --platform=linux/amd64 ghcr.io/malt3/sysroots/libcxx:bookworm ./sysroot.tar
+	$ crane export --platform=linux/arm64 ghcr.io/malt3/sysroots/libstdcxx:bookworm ./sysroot.tar
 	```
 3. Directly download an image layer as an http_archive in Bazel. For this, have a look at the [example][example]
 
