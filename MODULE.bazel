@@ -14,7 +14,7 @@ git_override(
 apt = use_extension("@rules_distroless//apt:extensions.bzl", "apt")
 apt.install(
     name = "bookworm",
-    lock = "@@//:bookworm.lock.json",
+    lock = "@sysroots//:bookworm.lock.json",
     manifest = "//:bookworm.yaml",
 )
 use_repo(apt, "bookworm")
