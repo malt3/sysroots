@@ -1,0 +1,2 @@
+common --credential_helper=ghcr.io=%workspace%/tools/credential-helper
+try-import %workspace%/.bazelrc.user

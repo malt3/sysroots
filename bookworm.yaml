@@ -28,4 +28,5 @@ packages:
   - gcc-12-base
   - libgomp1
   - libstdc++6
+  - libstdc++-12-dev
 

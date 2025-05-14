@@ -1,10 +1,12 @@
-GCC = "gcc"
-LLVM = "llvm"
+GCC = "libstdcxx"
+LLVM = "libcxx"
 
 _GCC_PACKAGE_TEMPLATES = [
     "gcc-{version}-base",
     "libgomp1",
     "libstdc++6",
+    "libstdc++-{version}-dev",
+    "libgcc-{version}-dev",
 ]
 
 _LLVM_PACKAGE_TEMPLATES = [
