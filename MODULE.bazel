@@ -1,0 +1,16 @@
+bazel_dep(name = "rules_pkg", version = "1.1.0")
+bazel_dep(name = "rules_oci", version = "2.2.6")
+bazel_dep(name = "rules_distroless", version = "0.5.1")
+git_override(
+    module_name = "rules_distroless",
+    commit = "87c56d7bbe63330ed07eec41064a559a02f4357e",
+    remote = "https://github.com/GoogleContainerTools/rules_distroless.git",
+)
+
+apt = use_extension("@rules_distroless//apt:extensions.bzl", "apt")
+apt.install(
+    name = "bookworm",
+    lock = "@@//:bookworm.lock.json",
+    manifest = "//:bookworm.yaml",
+)
+use_repo(apt, "bookworm")

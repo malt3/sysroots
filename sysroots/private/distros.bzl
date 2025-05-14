@@ -1,0 +1,1 @@
+DISTROS = ["bookworm"]
