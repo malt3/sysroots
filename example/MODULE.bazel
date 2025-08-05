@@ -26,12 +26,12 @@ llvm.toolchain(
         "linux-aarch64": "20.1.1",
     },
     sha256 = {
-        "linux-x86_64": "58d7a1a8fa22a001794e82a8e9ca441e12fb6d62fd8b7d47040df58a459dec8e",
-        "linux-aarch64": "86314680f7abea8e054d635c0e54b3f3f6993f8e826df0da8cfd02e456976625",
+        "linux-x86_64": "2096e63a41887a860199aec0f046f82e6469b2cd5ae4e4245a7a111bff4abe5b",
+        "linux-aarch64": "a71d6686edfb32e455717a1befb013b580a52042915a49f21fc25f83fff59e20",
     },
     urls = {
-        "linux-x86_64": ["https://github.com/dzbarsky/static-clang/releases/download/v20.1.1/linux_amd64.tar.xz"],
-        "linux-aarch64": ["https://github.com/dzbarsky/static-clang/releases/download/v20.1.1/linux_arm64.tar.xz"],
+        "linux-x86_64": ["https://github.com/dzbarsky/static-clang/releases/download/v20.1.1-4/linux_amd64.tar.zst"],
+        "linux-aarch64": ["https://github.com/dzbarsky/static-clang/releases/download/v20.1.1-4/linux_arm64.tar.zst"],
     },
 )
 llvm.toolchain(
@@ -48,6 +48,14 @@ llvm.toolchain(
         "linux-aarch64": "libc++",
         "linux-x86_64": "libc++",
     },
+    cxx_flags = {
+        "linux-x86_64": [
+            "-iwithsysroot/usr/lib/llvm-20/include/c++/v1",
+        ],
+        "linux-aarch64": [
+            "-iwithsysroot/usr/lib/llvm-20/include/c++/v1",
+        ],
+    }
 )
 llvm.toolchain_root(
     name = "llvm_libcxx",
@@ -80,6 +88,16 @@ llvm.toolchain(
     stdlib = {
         "linux-aarch64": "stdc++",
         "linux-x86_64": "stdc++",
+    },
+    cxx_flags = {
+        "linux-x86_64": [
+            "-iwithsysroot/usr/include/c++/14",
+            "-iwithsysroot/usr/include/x86_64-linux-gnu/c++/14/",
+        ],
+        "linux-aarch64": [
+            "-iwithsysroot/usr/include/c++/14",
+            "-iwithsysroot/usr/include/aarch64-linux-gnu/c++/14/",
+        ],
     },
 )
 llvm.toolchain_root(
@@ -117,11 +135,11 @@ http_archive = use_repo_rule("@bazel_tools//tools/build_defs/repo:http.bzl", "ht
 SYSROOT_DIGESTS = {
     "amd64": {
         "libc++": "de081fcd7809784db207c74346e09d0fc8c5d6f1876a575ddf2f44345912d65c",
-        "libstdc++": "f213f7cb59c8afb52d04abe63bd17527cbb886801ad30c7a86e44255268a4d9b",
+        "libstdc++": "fb4046eab51d4fcbece1d5827e7c4a699a0c60a42be0804e525848ac267a02fe",
     },
     "arm64": {
         "libc++": "ffb37b7e4374556787e679b79a3a43987716739c6e0bcde650f00be1a2e90f35",
-        "libstdc++": "8ff8b5741afd19d386502578cdd933d238fa54cd0ae5a7939b3b02d0ba3da571",
+        "libstdc++": "186b1bf705520115219a527b8d7ae158d59fe8ee9643a80a3192bae37dee0853",
     },
 }
 
