@@ -23,7 +23,29 @@ _LLVM_PACKAGE_TEMPLATES_PLUCKY = [
     "libc++abi-{version}-dev",
 ]
 
-_GCC_SYMLINK_TEMPLATES = {}
+_GCC_SYMLINK_TEMPLATES = {
+    # Symlink GCC arch-specific headers to where clang expects them
+    "usr/include/c++/{version}/x86_64-unknown-linux-gnu": "/usr/include/x86_64-linux-gnu/c++/{version}",
+    "usr/include/c++/{version}/aarch64-unknown-linux-gnu": "/usr/include/aarch64-linux-gnu/c++/{version}",
+    # Symlink GCC runtime files for x86_64
+    "usr/lib/x86_64-linux-gnu/crtbegin.o": "/usr/lib/gcc/x86_64-linux-gnu/{version}/crtbegin.o",
+    "usr/lib/x86_64-linux-gnu/crtbeginS.o": "/usr/lib/gcc/x86_64-linux-gnu/{version}/crtbeginS.o",
+    "usr/lib/x86_64-linux-gnu/crtbeginT.o": "/usr/lib/gcc/x86_64-linux-gnu/{version}/crtbeginT.o",
+    "usr/lib/x86_64-linux-gnu/crtend.o": "/usr/lib/gcc/x86_64-linux-gnu/{version}/crtend.o",
+    "usr/lib/x86_64-linux-gnu/crtendS.o": "/usr/lib/gcc/x86_64-linux-gnu/{version}/crtendS.o",
+    "usr/lib/x86_64-linux-gnu/libgcc.a": "/usr/lib/gcc/x86_64-linux-gnu/{version}/libgcc.a",
+    "usr/lib/x86_64-linux-gnu/libgcc_eh.a": "/usr/lib/gcc/x86_64-linux-gnu/{version}/libgcc_eh.a",
+    "usr/lib/x86_64-linux-gnu/libstdc++.a": "/usr/lib/gcc/x86_64-linux-gnu/{version}/libstdc++.a",
+    # Symlink GCC runtime files for aarch64  
+    "usr/lib/aarch64-linux-gnu/crtbegin.o": "/usr/lib/gcc/aarch64-linux-gnu/{version}/crtbegin.o",
+    "usr/lib/aarch64-linux-gnu/crtbeginS.o": "/usr/lib/gcc/aarch64-linux-gnu/{version}/crtbeginS.o", 
+    "usr/lib/aarch64-linux-gnu/crtbeginT.o": "/usr/lib/gcc/aarch64-linux-gnu/{version}/crtbeginT.o",
+    "usr/lib/aarch64-linux-gnu/crtend.o": "/usr/lib/gcc/aarch64-linux-gnu/{version}/crtend.o",
+    "usr/lib/aarch64-linux-gnu/crtendS.o": "/usr/lib/gcc/aarch64-linux-gnu/{version}/crtendS.o",
+    "usr/lib/aarch64-linux-gnu/libgcc.a": "/usr/lib/gcc/aarch64-linux-gnu/{version}/libgcc.a",
+    "usr/lib/aarch64-linux-gnu/libgcc_eh.a": "/usr/lib/gcc/aarch64-linux-gnu/{version}/libgcc_eh.a",
+    "usr/lib/aarch64-linux-gnu/libstdc++.a": "/usr/lib/gcc/aarch64-linux-gnu/{version}/libstdc++.a",
+}
 
 _LLVM_SYMLINK_TEMPLATES = {
     "usr/lib/libc++abi.a": "/usr/lib/llvm-{version}/lib/libc++abi.a",
