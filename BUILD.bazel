@@ -4,7 +4,7 @@ load("@rules_pkg//pkg/private/tar:tar.bzl", "pkg_tar")
 load("//sysroots/private:architectures.bzl", "ARCHITECTURES")
 load("//sysroots/private:deb.bzl", "deb")
 load("//sysroots/private:distros.bzl", "DISTROS")
-load("//sysroots/private:ecosystems.bzl", "ECOSYSTEMS", "ECOSYSTEM_VERSIONS")
+load("//sysroots/private:ecosystems.bzl", "ECOSYSTEMS")
 
 [
     oci_push(
@@ -20,7 +20,6 @@ load("//sysroots/private:ecosystems.bzl", "ECOSYSTEMS", "ECOSYSTEM_VERSIONS")
         repository = "ghcr.io/malt3/sysroots/{ecosystem}".format(ecosystem = ecosystem),
     )
     for ecosystem in ECOSYSTEMS
-    for ecosystem_version in ECOSYSTEM_VERSIONS[ecosystem]
     for distro in DISTROS
 ]
 
@@ -40,7 +39,6 @@ load("//sysroots/private:ecosystems.bzl", "ECOSYSTEMS", "ECOSYSTEM_VERSIONS")
         ],
     )
     for ecosystem in ECOSYSTEMS
-    for ecosystem_version in ECOSYSTEM_VERSIONS[ecosystem]
     for distro in DISTROS
 ]
 
@@ -63,7 +61,6 @@ load("//sysroots/private:ecosystems.bzl", "ECOSYSTEMS", "ECOSYSTEM_VERSIONS")
     )
     for architecture in ARCHITECTURES
     for ecosystem in ECOSYSTEMS
-    for ecosystem_version in ECOSYSTEM_VERSIONS[ecosystem]
     for distro in DISTROS
 ]
 
@@ -83,25 +80,29 @@ load("//sysroots/private:ecosystems.bzl", "ECOSYSTEMS", "ECOSYSTEM_VERSIONS")
             architecture = architecture,
             distro = distro,
             ecosystem = ecosystem,
-            ecosystem_version = ecosystem_version,
         ) + [
-            "symlinks_{ecosystem}".format(ecosystem = ecosystem),
+            "symlinks_{distro}_{ecosystem}".format(
+                distro = distro,
+                ecosystem = ecosystem,
+            ),
         ],
     )
     for architecture in ARCHITECTURES
     for ecosystem in ECOSYSTEMS
-    for ecosystem_version in ECOSYSTEM_VERSIONS[ecosystem]
     for distro in DISTROS
 ]
 
 [
     pkg_tar(
-        name = "symlinks_{ecosystem}".format(ecosystem = ecosystem),
-        symlinks = deb.ecosystem_symlinks(
+        name = "symlinks_{distro}_{ecosystem}".format(
+            distro = distro,
             ecosystem = ecosystem,
-            ecosystem_version = ecosystem_version,
+        ),
+        symlinks = deb.ecosystem_symlinks(
+            distro = distro,
+            ecosystem = ecosystem,
         ),
     )
     for ecosystem in ECOSYSTEMS
-    for ecosystem_version in ECOSYSTEM_VERSIONS[ecosystem]
+    for distro in DISTROS
 ]

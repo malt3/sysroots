@@ -37,8 +37,8 @@ llvm.toolchain(
 llvm.toolchain(
     name = "llvm_libcxx",
     libclang_rt = {
-        "@llvm_sysroot_linux_amd64_libcxx//:usr/lib/llvm-19/lib/clang/19/lib/linux/libclang_rt.builtins-x86_64.a": "x86_64-unknown-linux-gnu/libclang_rt.builtins.a",
-        "@llvm_sysroot_linux_arm64_libcxx//:usr/lib/llvm-19/lib/clang/19/lib/linux/libclang_rt.builtins-aarch64.a": "aarch64-unknown-linux-gnu/libclang_rt.builtins.a",
+        "@llvm_sysroot_linux_amd64_libcxx//:usr/lib/llvm-20/lib/clang/20/lib/linux/libclang_rt.builtins-x86_64.a": "x86_64-unknown-linux-gnu/libclang_rt.builtins.a",
+        "@llvm_sysroot_linux_arm64_libcxx//:usr/lib/llvm-20/lib/clang/20/lib/linux/libclang_rt.builtins-aarch64.a": "aarch64-unknown-linux-gnu/libclang_rt.builtins.a",
     },
     llvm_versions = {
         "linux-x86_64": "20.1.1",
@@ -70,8 +70,8 @@ llvm.extra_target_compatible_with(
 llvm.toolchain(
     name = "llvm_libstdcxx",
     libclang_rt = {
-        "@llvm_sysroot_linux_amd64_libstdcxx//:usr/lib/llvm-19/lib/clang/19/lib/linux/libclang_rt.builtins-x86_64.a": "x86_64-unknown-linux-gnu/libclang_rt.builtins.a",
-        "@llvm_sysroot_linux_arm64_libstdcxx//:usr/lib/llvm-19/lib/clang/19/lib/linux/libclang_rt.builtins-aarch64.a": "aarch64-unknown-linux-gnu/libclang_rt.builtins.a",
+        "@llvm_sysroot_linux_amd64_libstdcxx//:usr/lib/llvm-20/lib/clang/20/lib/linux/libclang_rt.builtins-x86_64.a": "x86_64-unknown-linux-gnu/libclang_rt.builtins.a",
+        "@llvm_sysroot_linux_arm64_libstdcxx//:usr/lib/llvm-20/lib/clang/20/lib/linux/libclang_rt.builtins-aarch64.a": "aarch64-unknown-linux-gnu/libclang_rt.builtins.a",
     },
     llvm_versions = {
         "linux-x86_64": "20.1.1",
@@ -116,12 +116,12 @@ http_archive = use_repo_rule("@bazel_tools//tools/build_defs/repo:http.bzl", "ht
 
 SYSROOT_DIGESTS = {
     "amd64": {
-        "libc++": "f9fcc3eef3d4ee560b737d11d419eade682e99d6d071ca93e9e2213af9c51208",
-        "libstdc++": "d9c4a425f29c7922b85b5e3a974bfe91e3cf3e96c53c800ad538279557697d70",
+        "libc++": "de081fcd7809784db207c74346e09d0fc8c5d6f1876a575ddf2f44345912d65c",
+        "libstdc++": "f213f7cb59c8afb52d04abe63bd17527cbb886801ad30c7a86e44255268a4d9b",
     },
     "arm64": {
-        "libc++": "7af34f88fa16ccc8194c0d0cfc2a42b7d6cd73187156a49baddd74677f5959b5",
-        "libstdc++": "8fd983de104d96a161f6c5aeed50a8f72490e2cd3feda33eb3a9cd1618dd75ea",
+        "libc++": "ffb37b7e4374556787e679b79a3a43987716739c6e0bcde650f00be1a2e90f35",
+        "libstdc++": "8ff8b5741afd19d386502578cdd933d238fa54cd0ae5a7939b3b02d0ba3da571",
     },
 }
 
@@ -136,7 +136,7 @@ filegroup(
 """,
     sha256 = SYSROOT_DIGESTS["amd64"]["libc++"],
     type = "tzst",
-    urls = ["https://ghcr.io/v2/malt3/sysroots/llvm/blobs/sha256:" + SYSROOT_DIGESTS["amd64"]["libc++"]],
+    urls = ["https://ghcr.io/v2/malt3/sysroots/libcxx/blobs/sha256:" + SYSROOT_DIGESTS["amd64"]["libc++"]],
 )
 
 http_archive(
@@ -150,7 +150,7 @@ filegroup(
 """,
     sha256 = SYSROOT_DIGESTS["amd64"]["libstdc++"],
     type = "tzst",
-    urls = ["https://ghcr.io/v2/malt3/sysroots/gcc/blobs/sha256:" + SYSROOT_DIGESTS["amd64"]["libstdc++"]],
+    urls = ["https://ghcr.io/v2/malt3/sysroots/libstdcxx/blobs/sha256:" + SYSROOT_DIGESTS["amd64"]["libstdc++"]],
 )
 
 http_archive(
@@ -178,5 +178,5 @@ filegroup(
 """,
     sha256 = SYSROOT_DIGESTS["arm64"]["libstdc++"],
     type = "tzst",
-    urls = ["https://ghcr.io/v2/malt3/sysroots/libstcxx/blobs/sha256:" + SYSROOT_DIGESTS["arm64"]["libstdc++"]],
+    urls = ["https://ghcr.io/v2/malt3/sysroots/libstdcxx/blobs/sha256:" + SYSROOT_DIGESTS["arm64"]["libstdc++"]],
 )

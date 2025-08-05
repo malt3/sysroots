@@ -1,4 +1,4 @@
-load(":ecosystems.bzl", "PACKAGES", "SYMLINKS")
+load(":ecosystems.bzl", "get_ecosystem_packages", "get_ecosystem_symlinks")
 
 _BASE_PACKAGES = ["base-files", "libc6", "libc6-dev"]
 
@@ -15,14 +15,14 @@ def _base_packages(*, distro, architecture):
         for name in _BASE_PACKAGES
     ]
 
-def _ecosystem_packages(*, distro, architecture, ecosystem, ecosystem_version):
+def _ecosystem_packages(*, distro, architecture, ecosystem):
     return [
         _package(distro = distro, name = name, architecture = architecture)
-        for name in PACKAGES[ecosystem][ecosystem_version]
+        for name in get_ecosystem_packages(distro, ecosystem)
     ]
 
-def _ecosystem_symlinks(*, ecosystem, ecosystem_version):
-    return SYMLINKS[ecosystem][ecosystem_version]
+def _ecosystem_symlinks(*, distro, ecosystem):
+    return get_ecosystem_symlinks(distro, ecosystem)
 
 deb = struct(
     package = _package,

@@ -1,0 +1,36 @@
+# ubuntu 25.04 (plucky penguin)
+version: 1
+
+sources:
+  - channel: plucky main
+    url: https://snapshot.ubuntu.com/ubuntu/20250501T030400Z
+  - channel: plucky-updates main
+    url: https://snapshot.ubuntu.com/ubuntu/20250501T030400Z
+  - channel: plucky-security main
+    url: https://snapshot.ubuntu.com/ubuntu/20250501T030400Z
+  - channel: plucky universe
+    url: https://snapshot.ubuntu.com/ubuntu/20250501T030400Z
+  - channel: plucky-updates universe
+    url: https://snapshot.ubuntu.com/ubuntu/20250501T030400Z
+  - channel: plucky-security universe
+    url: https://snapshot.ubuntu.com/ubuntu/20250501T030400Z
+
+archs:
+  - amd64
+  - arm64
+
+packages:
+  - base-files
+  - libc6
+  - libc6-dev
+  - libc-bin
+  # c++ (llvm)
+  - libgcc-14-dev
+  - libclang-rt-20-dev
+  - libc++-20-dev
+  - libc++abi-20-dev
+  # c++ (gcc)
+  - gcc-14-base
+  - libgomp1
+  - libstdc++6
+  - libstdc++-14-dev

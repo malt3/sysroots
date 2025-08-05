@@ -1,1 +1,1 @@
-DISTROS = ["bookworm"]
+DISTROS = ["bookworm", "plucky"]

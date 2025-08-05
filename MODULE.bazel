@@ -7,7 +7,7 @@ bazel_dep(name = "rules_oci", version = "2.2.6")
 bazel_dep(name = "rules_distroless", version = "0.5.1")
 git_override(
     module_name = "rules_distroless",
-    commit = "87c56d7bbe63330ed07eec41064a559a02f4357e",
+    commit = "a69bc1949d5daf2d1b0906890667d69b0897688b",
     remote = "https://github.com/GoogleContainerTools/rules_distroless.git",
 )
 
@@ -17,4 +17,9 @@ apt.install(
     lock = "@sysroots//:bookworm.lock.json",
     manifest = "//:bookworm.yaml",
 )
-use_repo(apt, "bookworm")
+apt.install(
+    name = "plucky",
+    lock = "@sysroots//:plucky.lock.json",
+    manifest = "//:plucky.yaml",
+)
+use_repo(apt, "bookworm", "plucky")
