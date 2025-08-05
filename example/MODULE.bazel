@@ -134,11 +134,11 @@ http_archive = use_repo_rule("@bazel_tools//tools/build_defs/repo:http.bzl", "ht
 
 SYSROOT_DIGESTS = {
     "amd64": {
-        "libc++": "de081fcd7809784db207c74346e09d0fc8c5d6f1876a575ddf2f44345912d65c",
+        "libc++": "11a8a41980d1bf8d7d5b7b279d251b6e851d383b80553e2ecc97523d644acc28",
         "libstdc++": "fb4046eab51d4fcbece1d5827e7c4a699a0c60a42be0804e525848ac267a02fe",
     },
     "arm64": {
-        "libc++": "ffb37b7e4374556787e679b79a3a43987716739c6e0bcde650f00be1a2e90f35",
+        "libc++": "b4b6fe951373fc41456f8af25b7afa130b9d27f6eede1aef00218db5f820a4ba",
         "libstdc++": "186b1bf705520115219a527b8d7ae158d59fe8ee9643a80a3192bae37dee0853",
     },
 }
